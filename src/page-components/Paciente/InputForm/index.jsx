@@ -15,44 +15,27 @@ const InputForm = () => {
         alert(JSON.stringify(values, null, 2));
         actions.setSubmitting(false);
       }}
-      render={(props) => (
+      render={props => (
         <form onSubmit={props.handleSubmit}>
+          <FormikLabelInput text={'Nombre completo'} name={'name'} />
+          <FormikLabelInput text={'Correo electrónico'} name={'email'} />
+          <FormikLabelInput text={'Dirección'} name={'address'} />
+          <FormikLabelInput text={'Ocupación'} name={'occupation'} />
+          <FormikLabelInput text={'Fecha de nacimiento'} name={'birthdate'} />
           <FormikLabelInput
-            text={"Nombre completo"}
-            name={"name"}
+            text={'Número telefónico'}
+            name={'cellphoneNumber'}
           />
-          <FormikLabelInput
-            text={"Correo electrónico"}
-            name={"email"}
-          />
-          <FormikLabelInput
-            text={"Dirección"}
-            name={"address"}
-          />
-          <FormikLabelInput
-            text={"Ocupación"}
-            name={"occupation"}
-          />
-          <FormikLabelInput
-            text={"Fecha de nacimiento"}
-            name={"birthdate"}
-          />
-          <FormikLabelInput
-            text={"Número telefónico"}
-            name={"cellphoneNumber"}
-          />
-          <FormikLabelInput
-            text={"Recomendado por"}
-            name={"recommendedBy"}
-          />
+          <FormikLabelInput text={'Recomendado por'} name={'recommendedBy'} />
           <Flex justifyContent="flex-end">
-            <Box width={[1/4, 1/6, 1/8]}>
+            <Box width={[1 / 4, 1 / 6, 1 / 8]}>
               <InfoButton type="submit">Guardar</InfoButton>
             </Box>
           </Flex>
         </form>
-      )} />
+      )}
+    />
   );
-}
+};
 
 export default InputForm;

@@ -16,5 +16,4 @@ const Input = withInputStyle('input');
 
 export default Input;
 
-
 export const FormikInput = withInputStyle(Field);

@@ -5,8 +5,8 @@ function createSicknessSchema(addedFields) {
     hasIt: Yup.boolean(),
     diagnosisDate: Yup.date(),
     notes: Yup.string(),
-    ...addedFields
-  })
+    ...addedFields,
+  });
 }
 
 function createPhysicalExplorationSchema() {
@@ -21,8 +21,8 @@ function createPhysicalExplorationSchema() {
 function createLeftRighEyeDecimal() {
   return Yup.object().shape({
     rightEye: Yup.number(),
-    leftEye: Yup.number()
-  })
+    leftEye: Yup.number(),
+  });
 }
 
 const DiabetesSicknessSchema = createSicknessSchema({
@@ -30,8 +30,8 @@ const DiabetesSicknessSchema = createSicknessSchema({
     value: Yup.number(),
     levels: Yup.number()
       .min(60, 'El número debe ser mayor a 60 y menor a 100')
-      .max(100, 'El número debe ser mayor a 60 y menor a 100')
-  })
+      .max(100, 'El número debe ser mayor a 60 y menor a 100'),
+  }),
 });
 
 function getValidationSchema() {
@@ -46,10 +46,9 @@ function getValidationSchema() {
     address: Yup.string(),
     occupation: Yup.string(),
     birthdate: Yup.string(),
-    cellphoneNumber: Yup.string()
-      .required('Se requiere un número de teléfono'),
+    cellphoneNumber: Yup.string().required('Se requiere un número de teléfono'),
     recommendedBy: Yup.string(),
-    
+
     /*
     // Antecedentes Médicos
     medicalRecords: Yup.object().shape({
@@ -121,7 +120,6 @@ function getValidationSchema() {
       )
     */
   });
-
 }
 
 export default getValidationSchema;

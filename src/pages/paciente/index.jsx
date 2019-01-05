@@ -17,7 +17,7 @@ const Paciente = () => {
       </Box>
       <Flex mt={3}>
         <Box>
-          <GatsbyLink to={"/paciente/nuevo"}>Crear nuevo paciente</GatsbyLink>
+          <GatsbyLink to={'/paciente/nuevo'}>Crear nuevo paciente</GatsbyLink>
         </Box>
       </Flex>
       <Flex pt={3} mt={2}>

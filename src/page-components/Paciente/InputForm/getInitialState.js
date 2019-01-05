@@ -1,4 +1,4 @@
-export default function getInitialState () {
+export default function getInitialState() {
   const defaultDate = new Date('2000-01-01T12:00:00');
   const stringDefaultDate = defaultDate.toDateString();
 
@@ -18,9 +18,9 @@ export default function getInitialState () {
         diagnosisDate: stringDefaultDate,
         sugar: {
           value: 0,
-          levels: 60 // 60 - 800
+          levels: 60, // 60 - 800
         },
-        notes: '',        
+        notes: '',
       },
       highPressure: {
         hasIt: false,
@@ -57,7 +57,7 @@ export default function getInitialState () {
           handMovement: '',
           fingerCount: '',
           eyeAcuity: '',
-        }
+        },
       },
       biomichroscopia: '',
       inEyePressure: {
@@ -69,25 +69,26 @@ export default function getInitialState () {
       prescription: {
         objective: {
           rightEye: 0.0,
-          leftEye: 0.0
-        }, 
+          leftEye: 0.0,
+        },
         subjective: {
           rightEye: 0.0,
-          leftEye: 0.0
-        }
+          leftEye: 0.0,
+        },
       },
       specialStudies: {
-        inEyeGlassCalculus: { // Calculo de lente intra-ocular
+        inEyeGlassCalculus: {
+          // Calculo de lente intra-ocular
           rightEye: 0.0,
-          leftEye: 0.0
+          leftEye: 0.0,
         },
         visualField: '',
         eco: false,
         fluorangiography: false,
         paquimetry: {
           rightEye: 500,
-          leftEye: 500
-        }, 
+          leftEye: 500,
+        },
         topography: false,
       },
       diagnostic: '',
@@ -99,10 +100,12 @@ export default function getInitialState () {
       plan: '',
       notes: '',
     },
-    
-    appointments: [{
-      date: stringDefaultDate,
-      notes: '',
-    }]
-  }
+
+    appointments: [
+      {
+        date: stringDefaultDate,
+        notes: '',
+      },
+    ],
+  };
 }

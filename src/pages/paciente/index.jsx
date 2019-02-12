@@ -1,33 +1,35 @@
-import React from 'react';
-import { Box, Flex } from '@rebass/grid';
-import Layout from '../../components/layout';
-import GatsbyLink from 'gatsby-link';
-import styled from 'styled-components';
-import Input from '../../components/Input';
+import React, { useState } from 'react';
+import PatientView from '../../page-components/Paciente/Index/PatientView';
 
-const CenterBox = styled(Box)`
-  text-align: center;
-`;
+const mockData = {
+  patientList: [
+    {
+      id: 1,
+      name: 'John Doe'
+    }, 
+    {
+      id: 2,
+      name: 'Jenny doe'
+    },
+    {
+      id: 3,
+      name: 'Cool man'
+    }
+  ]
+}
 
-const Paciente = () => {
+const Paciente = (props) => {
+  const [patientList, setPatientList] = useState(mockData.patientList)
+
+  const deletePatient = patientId => {
+    const newPatientList = patientList.filter(patient => patient.id !== patientId);
+
+    setPatientList(newPatientList);
+  }
+
+
   return (
-    <Layout>
-      <Box width={1}>
-        <Input placeholder={'Buscar'} />
-      </Box>
-      <Flex mt={3}>
-        <Box>
-          <GatsbyLink to={'/paciente/nuevo'}>Crear nuevo paciente</GatsbyLink>
-        </Box>
-      </Flex>
-      <Flex pt={3} mt={2}>
-        <Box width={3 / 4}>
-          <GatsbyLink to={'/paciente/detalle'}>Paciente</GatsbyLink>
-        </Box>
-        <CenterBox width={1 / 8}>Edit</CenterBox>
-        <CenterBox width={1 / 8}>Delete</CenterBox>
-      </Flex>
-    </Layout>
+    <PatientView {...props} patientList={patientList} deletePatient={deletePatient} />
   );
 };
 

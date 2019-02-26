@@ -25,6 +25,7 @@ const theme = {
     black: '#111111',
     gray: '#aaaaaa',
     silver: '#dddddd',
+    white: '#fff',
   },
 };
 

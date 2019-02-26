@@ -9,16 +9,18 @@ const CenterBox = styled(Box)`
   text-align: center;
 `;
 
-const PatientView = (props) => {
+const PatientView = props => {
   const { patientList, deletePatient } = props;
 
-  const confirmDeletePatient = (patient) => {
-    const confirmation = confirm(`¿Seguro que deseas borrar al paciente ${patient.name}?`);
+  const confirmDeletePatient = patient => {
+    const confirmation = confirm(
+      `¿Seguro que deseas borrar al paciente ${patient.name}?`
+    );
 
     if (!confirmation) return;
 
     deletePatient(patient.id);
-  } 
+  };
 
   return (
     <Layout>
@@ -37,7 +39,9 @@ const PatientView = (props) => {
             <Link to={'/paciente/detalle'}>Ver</Link>
           </CenterBox>
           <CenterBox width={1 / 8}>
-            <a href="#" onClick={() => confirmDeletePatient(patient)}>Borrar</a>
+            <a href="#" onClick={() => confirmDeletePatient(patient)}>
+              Borrar
+            </a>
           </CenterBox>
         </Flex>
       ))}

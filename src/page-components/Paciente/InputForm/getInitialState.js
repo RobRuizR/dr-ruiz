@@ -27,7 +27,7 @@ export default function getInitialState() {
         diagnosisDate: stringDefaultDate,
         notes: '',
       },
-      medicineAllergies: [], // string array
+      medicineAllergies: '', // string
       asthma: false,
       anesthesia: false,
       bleeding: false,

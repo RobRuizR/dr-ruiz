@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import getInitialState from './getInitialState';
+import getInitialState, { getTestState } from './getInitialState';
 import getValidationSchema from './getValidationSchema';
 import {
   FormikLabelInput,
@@ -17,11 +17,12 @@ const InputForm = props => {
 
   return (
     <Formik
-      initialValues={getInitialState()}
+      initialValues={getTestState()}
       validationSchema={getValidationSchema()}
       onSubmit={async (values, actions) => {
         try {
           console.log('Enviando');
+          console.log(values);
           collection
             .add(values)
             .then(() => console.log('success'))
@@ -43,6 +44,7 @@ const InputForm = props => {
           <PersonalData />
           <MedicalRecords />
           <CurrentDiagnosis />
+          <OtherQuestions />
 
           <Flex justifyContent="flex-end" py={3}>
             <Box width={[1 / 4, 1 / 6, 1 / 8]}>
@@ -58,25 +60,40 @@ const InputForm = props => {
 const PersonalData = () => (
   <>
     <Box py={3}>
-      <h3>Datos personales</h3>
+      <h2>Datos personales</h2>
     </Box>
     <FormikLabelInput text={'Nombre completo'} name={'name'} />
     <FormikLabelInput text={'Correo electrónico'} name={'email'} />
     <FormikLabelInput text={'Dirección'} name={'address'} />
     <FormikLabelInput text={'Ocupación'} name={'occupation'} />
     <FormikLabelInput text={'Fecha de nacimiento'} name={'birthdate'} />
-    <FormikLabelInput
-      text={'Número telefónico'}
-      name={'cellphoneNumber'}
-    />
+    <FormikLabelInput text={'Número telefónico'} name={'cellphoneNumber'} />
     <FormikLabelInput text={'Recomendado por'} name={'recommendedBy'} />
   </>
-)
+);
+
+const OtherQuestions = () => {
+  const prefix = 'others';
+  return (
+    <>
+      <Box py={3}>
+        <h2>Otros</h2>
+      </Box>
+      <FormikLabelInput text="Motivación" name={`${prefix}.motivation`} />
+      <FormikLabelInput text="Plan" name={`${prefix}.plan`} />
+      <FormikLabelInput
+        text="Notas"
+        component="textarea"
+        name={`${prefix}.notes`}
+      />
+    </>
+  );
+};
 
 const MedicalRecords = () => (
   <>
     <Box py={3}>
-      <h3>Registros Médicos</h3>
+      <h2>Registros Médicos</h2>
     </Box>
     <FormikSelectLabelInput
       text={'Tiene diabetes'}
@@ -144,13 +161,6 @@ const MedicalRecords = () => (
       component="textarea"
       name={'medicalRecords.heartDiseases.notes'}
     />
-
-    <FormikLabelInput
-      text={'Alergias a medicamento'}
-      component="textarea"
-      name={'medicalRecords.medicineAllergies'}
-    />
-
     <FormikSelectLabelInput text={'Tiene asma'} name={'medicalRecords.asthma'}>
       <option value={false}>no</option>
       <option value={true}>sí</option>
@@ -263,11 +273,55 @@ const CurrentDiagnosis = () => {
     );
   };
 
+  const SpecialStudies = () => {
+    const fieldPrefix = `${prefix}.specialStudies`;
+    return (
+      <>
+        <Box py={2}>
+          <h2>Estudios especiales</h2>
+        </Box>
+        <LeftRightEyeNumeric
+          text={'Cálculo de lente intraocular'}
+          name={`specialStudies.inEyeGlassCalculus`}
+        />
+        <FormikLabelInput
+          text={'Campo visual'}
+          name={`${fieldPrefix}.visualField`}
+        />
+        <FormikSelectLabelInput text={'Eco'} name={`${fieldPrefix}.eco`}>
+          <option value={false}>no</option>
+          <option value={true}>sí</option>
+        </FormikSelectLabelInput>
+        <FormikSelectLabelInput
+          text={'Fluorangiografía'}
+          name={`${fieldPrefix}.fluorangiography`}
+        >
+          <option value={false}>no</option>
+          <option value={true}>sí</option>
+        </FormikSelectLabelInput>
+        <FormikSelectLabelInput
+          text={'Topografía'}
+          name={`${fieldPrefix}.topography`}
+        >
+          <option value={false}>no</option>
+          <option value={true}>sí</option>
+        </FormikSelectLabelInput>
+        <LeftRightEyeNumeric
+          text={'Paquimetría'}
+          name={`specialStudies.paquimetry`}
+        />
+      </>
+    );
+  };
+
   return (
     <>
+      <Box py={3}>
+        <h3>Diagnóstico Actual</h3>
+      </Box>
       <FormikLabelInput text={'PEEA'} name={`${prefix}.peea`} />
       <Box py={3}>
-        <h3>Exploración Física</h3>
+        <h4>Exploración Física</h4>
       </Box>
       <Flex flexDirection={['column', 'row']}>
         <PhysicalExplorationEye
@@ -289,6 +343,22 @@ const CurrentDiagnosis = () => {
         text={'Presión intraocular'}
         name={'inEyePressure'}
       />
+      <FormikLabelInput
+        text={'Distancia interpupilar'}
+        type="number"
+        name={`${prefix}.interPupilarDistance`}
+      />
+      <LeftRightEyeNumeric
+        text={'Prescripción subjetiva'}
+        name={'prescription.subjective'}
+      />
+      <LeftRightEyeNumeric
+        text={'Prescripción objetiva'}
+        name={'prescription.objective'}
+      />
+      <SpecialStudies />
+      <FormikLabelInput text={'Diagnóstico'} name={`${prefix}.diagnostic`} />
+      <FormikLabelInput text={'Tratamiento'} name={`${prefix}.treatment`} />
     </>
   );
 };

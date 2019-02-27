@@ -49,13 +49,11 @@ function getValidationSchema() {
     cellphoneNumber: Yup.string().required('Se requiere un número de teléfono'),
     recommendedBy: Yup.string(),
 
-    /*
     // Antecedentes Médicos
     medicalRecords: Yup.object().shape({
       diabetes: DiabetesSicknessSchema,
       highPressure: createSicknessSchema(),
-      medicineAllergies: Yup.array()
-        .of(Yup.string()),
+      medicineAllergies: Yup.string(),
       asthma: Yup.boolean(),
       anesthesia: Yup.boolean(),
       bleeding: Yup.boolean(),
@@ -77,7 +75,7 @@ function getValidationSchema() {
       biomichroscopia: Yup.string(),
       inEyePressure: Yup.object().shape({
         rightEye: Yup.number(),
-        leftEye: Yup.number()
+        leftEye: Yup.number(),
       }),
       interPupilarDistance: Yup.number(),
       gonioscopia: Yup.number()
@@ -86,7 +84,7 @@ function getValidationSchema() {
         .max(4, 'El número debe estar entre 1 y 4'),
       prescription: Yup.object().shape({
         objective: createLeftRighEyeDecimal(),
-        subjective: createLeftRighEyeDecimal()
+        subjective: createLeftRighEyeDecimal(),
       }),
       specialStudies: Yup.object().shape({
         inEyeGlassCalculus: createLeftRighEyeDecimal(),
@@ -98,7 +96,7 @@ function getValidationSchema() {
             .integer('El número debe ser entero')
             .positive('El número debe debe ser positivo'),
         }),
-        topography: Yup.boolean()
+        topography: Yup.boolean(),
       }),
       diagnostic: Yup.string(),
       treatment: Yup.string(),
@@ -111,14 +109,7 @@ function getValidationSchema() {
     }),
 
     // Citas
-    appointments: Yup.array()
-      .of(
-        Yup.object().shape({
-          date: Yup.date(),
-          notes: Yup.string()
-        })
-      )
-    */
+    appointments: Yup.array(),
   });
 }
 

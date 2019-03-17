@@ -13,7 +13,7 @@ const Layout = ({ children }) => (
     <React.Fragment>
       <Helmet titleTemplate="Doctor" />
       <Header siteTitle="Doctor" />
-      <Flex as="main" pt={4}>
+      <Flex as="main" py={4}>
         <Box mx="auto" p={2} width={[1, 3 / 4, 2 / 3]}>
           {children}
         </Box>

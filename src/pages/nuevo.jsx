@@ -1,34 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 import { Box, Flex } from '@rebass/grid';
 import Layout from '../components/Layout';
 import InputForm from '../components/PatientInputForm';
-import FirebaseContext from '../components/FirebaseContext';
+import getInitialState from '../page-components/NewPatient/getInitialState';
+import usePatientCollection from '../utils/usePatientCollection';
 
 const PacienteNuevo = () => {
-  const firebase = useContext(FirebaseContext);
-  const db = firebase.firestore();
-  const collection = db.collection('pacientes');
+  const collection = usePatientCollection();
 
   const handleNewPatientSubmit = async (values, actions) => {
     try {
-      console.log('Enviando');
-      console.log(values);
-      collection
-        .add(values)
-        .then(() => console.log('success'))
-        .catch(() => console.log(':('));
-      const docRef = await collection.add(values);
-      console.log('Enviado');
-      console.log(docRef);
-      console.log(`Identificador: ${docRef.id}`);
+      await collection.add(values);
+      alert('Paciente dado de alta');
     } catch (exception) {
-      console.log('Error');
+      alert('Error al dar de alta al paciente');
       console.log(exception);
     } finally {
-      console.log('Finally');
+      actions.setSubmitting(false);
     }
-    actions.setSubmitting(false);
   };
 
   return (
@@ -38,7 +28,10 @@ const PacienteNuevo = () => {
           {'<'} Regresar
         </Box>
       </Flex>
-      <InputForm onSubmit={handleNewPatientSubmit} />
+      <InputForm
+        onSubmit={handleNewPatientSubmit}
+        initialState={getInitialState()}
+      />
     </Layout>
   );
 };

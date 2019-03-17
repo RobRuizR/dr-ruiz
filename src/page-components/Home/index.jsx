@@ -36,7 +36,7 @@ const PatientView = props => {
         <Flex pt={3} mt={2} key={patient.id}>
           <Box width={3 / 4}>{patient.name}</Box>
           <CenterBox width={1 / 8}>
-            <Link to="/detalle">Ver</Link>
+            <Link to={`/detalle/${patient.id}`}>Ver</Link>
           </CenterBox>
           <CenterBox width={1 / 8}>
             <a href="#" onClick={() => confirmDeletePatient(patient)}>

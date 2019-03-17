@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PatientView from '../page-components/Home';
+import usePatientCollection from '../utils/usePatientCollection';
 
 const mockData = {
   patientList: [
@@ -19,14 +20,28 @@ const mockData = {
 };
 
 const Paciente = props => {
-  const [patientList, setPatientList] = useState(mockData.patientList);
+  const [patientList, setPatientList] = useState([]);
+  const collection = usePatientCollection();
+
+  async function getPatientData() {
+    const data = await collection.get();
+    const patientData = [];
+    data.forEach(d => {
+      patientData.push({
+        id: d.id,
+        name: d.data().name,
+      });
+    });
+    setPatientList(patientData);
+  }
+
+  useEffect(() => {
+    getPatientData();
+  }, []);
 
   const deletePatient = patientId => {
-    const newPatientList = patientList.filter(
-      patient => patient.id !== patientId
-    );
-
-    setPatientList(newPatientList);
+    collection.doc(patientId).delete();
+    getPatientData();
   };
 
   return (

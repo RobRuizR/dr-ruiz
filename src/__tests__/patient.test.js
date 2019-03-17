@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { render, fireEvent, cleanup } from 'react-testing-library';
+import { Simulate } from 'react-dom/test-utils'; // ES6
 import { ThemeProvider } from 'styled-components';
 // this adds custom jest matchers from jest-dom
 import 'jest-dom/extend-expect';
@@ -118,7 +119,9 @@ function getTestState() {
 
 describe('Pruebas de formulario de paciente', () => {
   test('Se hace submit al formulario con datos correctos', () => {
-    const mockSubmit = jest.fn(() => {});
+    const mockSubmit = jest.fn(() => {
+      console.log('Submit');
+    });
 
     const { getByText } = render(
       <ThemeProvider theme={theme}>
@@ -126,7 +129,7 @@ describe('Pruebas de formulario de paciente', () => {
       </ThemeProvider>
     );
 
-    fireEvent.click(getByText(/Guardar/i));
+    Simulate.click(getByText(/guardar/gi));
     expect(mockSubmit).toHaveBeenCalled();
   });
 });

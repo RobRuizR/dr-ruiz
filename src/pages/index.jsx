@@ -1,7 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PatientView from '../page-components/Home';
 
-import Layout from '../components/layout';
+const mockData = {
+  patientList: [
+    {
+      id: 1,
+      name: 'John Doe',
+    },
+    {
+      id: 2,
+      name: 'Jenny doe',
+    },
+    {
+      id: 3,
+      name: 'Cool man',
+    },
+  ],
+};
 
-const IndexPage = () => <Layout>Hello!</Layout>;
+const Paciente = props => {
+  const [patientList, setPatientList] = useState(mockData.patientList);
 
-export default IndexPage;
+  const deletePatient = patientId => {
+    const newPatientList = patientList.filter(
+      patient => patient.id !== patientId
+    );
+
+    setPatientList(newPatientList);
+  };
+
+  return (
+    <PatientView
+      {...props}
+      patientList={patientList}
+      deletePatient={deletePatient}
+    />
+  );
+};
+
+export default Paciente;

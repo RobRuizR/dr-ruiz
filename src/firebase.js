@@ -3,7 +3,6 @@ const config = {
   authDomain: 'dr-ruiz.firebaseapp.com',
   databaseURL: 'https://dr-ruiz.firebaseio.com',
   projectId: 'project-592440362028',
-  // storageBucket: 'awesome-bb71b.appspot.com',
   messagingSenderId: '592440362028',
 };
 

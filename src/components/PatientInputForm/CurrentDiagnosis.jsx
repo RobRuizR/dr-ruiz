@@ -98,10 +98,7 @@ const CurrentDiagnosis = () => {
     );
   };
   return (
-    <>
-      <Box py={3}>
-        <h3>Diagnóstico Actual</h3>
-      </Box>
+    <Box pt={3}>
       <FormikLabelInput text="PEEA" name={`${prefix}.peea`} />
       <Box py={3}>
         <h4>Exploración Física</h4>
@@ -139,7 +136,7 @@ const CurrentDiagnosis = () => {
       <SpecialStudies />
       <FormikLabelInput text="Diagnóstico" name={`${prefix}.diagnostic`} />
       <FormikLabelInput text="Tratamiento" name={`${prefix}.treatment`} />
-    </>
+    </Box>
   );
 };
 

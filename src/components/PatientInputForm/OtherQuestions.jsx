@@ -6,10 +6,7 @@ import { FormikLabelInput } from '../LabelInput';
 const OtherQuestions = () => {
   const prefix = 'others';
   return (
-    <>
-      <Box py={3}>
-        <h2>Otros</h2>
-      </Box>
+    <Box pt={3}>
       <FormikLabelInput text="Motivación" name={`${prefix}.motivation`} />
       <FormikLabelInput text="Plan" name={`${prefix}.plan`} />
       <FormikLabelInput
@@ -17,7 +14,7 @@ const OtherQuestions = () => {
         component="textarea"
         name={`${prefix}.notes`}
       />
-    </>
+    </Box>
   );
 };
 

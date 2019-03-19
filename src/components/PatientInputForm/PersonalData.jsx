@@ -4,10 +4,7 @@ import { Box } from '@rebass/grid';
 import { FormikLabelInput } from '../LabelInput';
 
 const PersonalData = () => (
-  <>
-    <Box py={3}>
-      <h2>Datos personales</h2>
-    </Box>
+  <Box pt={3}>
     <FormikLabelInput text="Nombre completo" name="name" />
     <FormikLabelInput text="Correo electrónico" name="email" />
     <FormikLabelInput text="Dirección" name="address" />
@@ -15,7 +12,7 @@ const PersonalData = () => (
     <FormikLabelInput text="Fecha de nacimiento" name="birthdate" />
     <FormikLabelInput text="Número telefónico" name="cellphoneNumber" />
     <FormikLabelInput text="Recomendado por" name="recommendedBy" />
-  </>
+  </Box>
 );
 
 export default PersonalData;

@@ -4,10 +4,7 @@ import { Box } from '@rebass/grid';
 import { FormikLabelInput, FormikSelectLabelInput } from '../LabelInput';
 
 const MedicalRecords = () => (
-  <>
-    <Box py={3}>
-      <h2>Registros Médicos</h2>
-    </Box>
+  <Box pt={3}>
     <FormikSelectLabelInput
       text="Tiene diabetes"
       name="medicalRecords.diabetes.hasIt"
@@ -125,6 +122,6 @@ const MedicalRecords = () => (
       component="textarea"
       name="medicalRecords.notes"
     />
-  </>
+  </Box>
 );
 export default MedicalRecords;

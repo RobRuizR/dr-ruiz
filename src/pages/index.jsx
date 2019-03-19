@@ -2,29 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PatientView from '../page-components/Home';
 import usePatientCollection from '../utils/usePatientCollection';
 
-const mockData = {
-  patientList: [
-    {
-      id: 1,
-      name: 'John Doe',
-    },
-    {
-      id: 2,
-      name: 'Jenny doe',
-    },
-    {
-      id: 3,
-      name: 'Cool man',
-    },
-  ],
-};
+const maxRows = 10;
 
 const Paciente = props => {
   const [patientList, setPatientList] = useState([]);
   const collection = usePatientCollection();
 
-  async function getPatientData() {
-    const data = await collection.get();
+  function updatePatientListFromData(data) {
     const patientData = [];
     data.forEach(d => {
       patientData.push({
@@ -33,6 +17,24 @@ const Paciente = props => {
       });
     });
     setPatientList(patientData);
+  }
+
+  async function getPatientData() {
+    const data = await collection
+      .orderBy('lowercaseName')
+      .limit(maxRows)
+      .get();
+    updatePatientListFromData(data);
+  }
+
+  async function filterByName(event) {
+    const { value: name } = event.target;
+    const data = await collection
+      .orderBy('lowercaseName')
+      .startAt(name.toLowerCase())
+      .limit(maxRows)
+      .get();
+    updatePatientListFromData(data);
   }
 
   useEffect(() => {
@@ -49,6 +51,7 @@ const Paciente = props => {
       {...props}
       patientList={patientList}
       deletePatient={deletePatient}
+      search={filterByName}
     />
   );
 };

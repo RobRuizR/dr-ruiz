@@ -1,18 +1,26 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import { Box, Flex } from '@rebass/grid';
 import Layout from '../components/Layout';
 import InputForm from '../components/PatientInputForm';
 import getInitialState from '../page-components/NewPatient/getInitialState';
 import usePatientCollection from '../utils/usePatientCollection';
+import useFirebaseTimestamp from '../utils/useFirebaseTimestamp';
 
 const PacienteNuevo = () => {
   const collection = usePatientCollection();
+  const timestamp = useFirebaseTimestamp();
 
   const handleNewPatientSubmit = async (values, actions) => {
+    const patient = {
+      ...values,
+      creationDate: timestamp,
+      lowercaseName: values.name.toLowerCase(),
+    };
     try {
-      await collection.add(values);
+      const ref = await collection.add(patient);
       alert('Paciente dado de alta');
+      navigate(`/detalle/${ref.id}`);
     } catch (exception) {
       alert('Error al dar de alta al paciente');
       console.log(exception);

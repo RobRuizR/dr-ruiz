@@ -8,7 +8,7 @@ const ColoredBox = styled(Box)`
 
 const Header = ({ siteTitle }) => (
   <Flex as="nav">
-    <ColoredBox width={1} p={3} />
+    <ColoredBox width={1} pt={2} />
   </Flex>
 );
 

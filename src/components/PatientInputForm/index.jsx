@@ -54,7 +54,7 @@ const PatientInputForm = props => {
             <Flex as={TabList} py={2}>
               <StyledTab>Información personal</StyledTab>
               <StyledTab>Registros médicos</StyledTab>
-              <StyledTab>Diagnóstico actual</StyledTab>
+              <StyledTab>Diagnóstico inicial</StyledTab>
               <StyledTab>Otras preguntas</StyledTab>
             </Flex>
 
@@ -73,7 +73,7 @@ const PatientInputForm = props => {
               </TabPanel>
             </TabPanels>
 
-            <Flex justifyContent="flex-end" py={3}>
+            <Flex justifyContent="flex-end" py={[2, 2, 3]}>
               <Box width={[1 / 4, 1 / 6, 1 / 8]}>
                 <InfoButton type="submit">Guardar</InfoButton>
               </Box>

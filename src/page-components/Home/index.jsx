@@ -10,7 +10,7 @@ const CenterBox = styled(Box)`
 `;
 
 const PatientView = props => {
-  const { patientList, deletePatient } = props;
+  const { patientList, deletePatient, search } = props;
 
   const confirmDeletePatient = patient => {
     const confirmation = confirm(
@@ -25,7 +25,7 @@ const PatientView = props => {
   return (
     <Layout>
       <Box width={1}>
-        <Input placeholder="Buscar" />
+        <Input placeholder="Buscar" onChange={search} />
       </Box>
       <Flex mt={3}>
         <Box>

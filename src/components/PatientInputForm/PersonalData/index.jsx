@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@rebass/grid';
 
-import { FormikLabelInput } from '../LabelInput';
+import { FormikLabelInput } from '../../LabelInput';
 
 const PersonalData = () => (
   <Box pt={3}>

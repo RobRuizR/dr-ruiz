@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import getValidationSchema from './getValidationSchema';
 import { InfoButton } from '../Button';
-import PersonalData from './PersonalData';
 import OtherQuestions from './OtherQuestions';
 import MedicalRecords from './MedicalRecords';
 import CurrentDiagnosis from './CurrentDiagnosis';
@@ -52,16 +51,12 @@ const PatientInputForm = props => {
         <form onSubmit={renderProps.handleSubmit}>
           <Tabs>
             <Flex as={TabList} py={2}>
-              <StyledTab>Información personal</StyledTab>
               <StyledTab>Registros médicos</StyledTab>
               <StyledTab>Diagnóstico inicial</StyledTab>
               <StyledTab>Otras preguntas</StyledTab>
             </Flex>
 
             <TabPanels>
-              <TabPanel>
-                <PersonalData />
-              </TabPanel>
               <TabPanel>
                 <MedicalRecords />
               </TabPanel>

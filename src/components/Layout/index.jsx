@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { Flex, Box } from '@rebass/grid';
 import { ThemeProvider } from 'styled-components';
 
@@ -11,7 +10,6 @@ import theme from '../../utils/theme';
 const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <React.Fragment>
-      <Helmet titleTemplate="Doctor" />
       <Header siteTitle="Doctor" />
       <Flex as="main" py={4}>
         <Box mx="auto" p={2} width={[1, 3 / 4, 2 / 3]}>

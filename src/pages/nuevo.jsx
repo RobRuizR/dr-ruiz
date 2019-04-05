@@ -2,10 +2,10 @@ import React from 'react';
 import { Link, navigate } from 'gatsby';
 import { Box, Flex } from '@rebass/grid';
 import Layout from '../components/Layout';
-import InputForm from '../components/PatientInputForm';
-import getInitialState from '../page-components/NewPatient/getInitialState';
 import usePatientCollection from '../utils/usePatientCollection';
 import useFirebaseTimestamp from '../utils/useFirebaseTimestamp';
+import NewPatient from '../page-components/NewPatient';
+import { getInitialPersonalDataState } from '../components/PatientInputForm/PersonalData/helpers';
 
 const PacienteNuevo = () => {
   const collection = usePatientCollection();
@@ -36,9 +36,9 @@ const PacienteNuevo = () => {
           {'<'} Regresar
         </Box>
       </Flex>
-      <InputForm
+      <NewPatient
         onSubmit={handleNewPatientSubmit}
-        initialState={getInitialState()}
+        initialState={getInitialPersonalDataState()}
       />
     </Layout>
   );
